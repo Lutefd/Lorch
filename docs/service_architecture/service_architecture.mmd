@@ -1,0 +1,57 @@
+graph TD
+    subgraph "Data Services"
+        DB[(PostgreSQL)]
+        CACHE[(Redis)]
+        MQ[RabbitMQ]
+    end
+
+    subgraph "Core Services"
+        AUTH[Authorization Service]
+        UPDATER[Updater Service]
+        API[Central API]
+    end
+
+    subgraph "Client Applications"
+        WEB[Web App]
+        CLI[CLI REPL]
+    end
+
+    subgraph "Logging & Monitoring"
+        PROM[Prometheus]
+        LOKI[Loki]
+        GRAFANA[Grafana]
+    end
+
+    subgraph "External Services"
+        STRAVA[Strava API]
+        HEVY[Hevy API]
+        GITHUB[GitHub API]
+        SPOTIFY[Spotify API]
+        RSS[RSS Feeds]
+    end
+
+    AUTH --> DB
+    UPDATER --> DB
+    UPDATER --> CACHE
+    API --> DB
+    API --> CACHE
+    WEB --> API
+    CLI --> API
+
+    UPDATER --> MQ
+    API --> MQ
+
+    UPDATER --> STRAVA
+    UPDATER --> HEVY
+    UPDATER --> GITHUB
+    UPDATER --> SPOTIFY
+    UPDATER --> RSS
+
+    PROM --> AUTH
+    PROM --> UPDATER
+    PROM --> API
+    LOKI --> AUTH
+    LOKI --> UPDATER
+    LOKI --> API
+    GRAFANA --> PROM
+    GRAFANA --> LOKI
