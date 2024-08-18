@@ -3,7 +3,7 @@
 ## Purpose
 
 This project aims to create a comprehensive personal data aggregator that consolidates information from various services including Strava, Hevy, GitHub, Spotify, and RSS feeds. The goal is to provide a unified dashboard for tracking exercises, coding activities, music and podcast consumption, and other content consumption.
-
+It also incorporates AI-powered analysis of the aggregated data by interacting with an external AI router service.
 ## Service Architecture
 
 The following diagram represents the high-level architecture of our services and how they interact:
@@ -21,6 +21,7 @@ The following diagram represents the high-level architecture of our services and
 7. **Web App**: Built with Astro and Svelte, provides a user-friendly interface to view aggregated data.
 8. **CLI REPL**: Allows command-line interaction with the aggregated data.
 9. **Logging & Monitoring Stack**: Uses Prometheus, Loki, and Grafana for comprehensive system observability.
+10. **AI Analysis**: Utilizes an external AI router service for various data analysis tasks, allowing for deeper insights into user data.
 
 ## Design Decisions
 
@@ -37,6 +38,10 @@ The following diagram represents the high-level architecture of our services and
 6. **PLG Stack for Logging**: The combination of Prometheus, Loki, and Grafana provides a comprehensive solution for metrics, logging, and visualization, crucial for monitoring the health and performance of the system.
 
 7. **Separate Authorization Service**: Having a dedicated service for managing authentication and authorization ensures a centralized and secure approach to handling sensitive credentials.
+
+8. **External AI Router Service**: By using an external AI router service, we maintain flexibility and reusability across multiple projects. This approach allows for centralized management of AI providers and easier scaling of AI capabilities.
+
+9. **AI Client Integration**: The project includes a client for the AI router service, allowing seamless integration of AI capabilities while keeping the core logic separate from AI provider specifics.
 
 ## Getting Started
 
