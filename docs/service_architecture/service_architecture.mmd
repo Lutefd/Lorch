@@ -27,7 +27,13 @@ graph TD
         HEVY[Hevy API]
         GITHUB[GitHub API]
         SPOTIFY[Spotify API]
-        RSS[RSS Feeds]
+        RSS[RSS Aggregator]
+        AI_ROUTER[AI Router Service]
+    end
+
+    subgraph "AI Providers"
+        OPENAI[OpenAI]
+        ANTHROPIC[Anthropic]
     end
 
     AUTH --> DB
@@ -37,6 +43,9 @@ graph TD
     API --> CACHE
     WEB --> API
     CLI --> API
+    API --> AI_ROUTER
+    AI_ROUTER --> OPENAI
+    AI_ROUTER --> ANTHROPIC
 
     UPDATER --> MQ
     API --> MQ
